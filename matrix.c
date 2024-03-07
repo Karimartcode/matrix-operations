@@ -20,3 +20,11 @@ void free_matrix(Matrix *m) {
     free(m->data);
     free(m);
 }
+
+void print_matrix(Matrix *m) {
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->cols; j++)
+            printf("%8.2f ", m->data[i][j]);
+        printf("\n");
+    }
+}
