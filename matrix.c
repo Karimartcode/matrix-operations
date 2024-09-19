@@ -28,3 +28,21 @@ void print_matrix(Matrix *m) {
         printf("\n");
     }
 }
+
+Matrix *add_matrices(Matrix *a, Matrix *b) {
+    if (a->rows != b->rows || a->cols != b->cols) return NULL;
+    Matrix *r = create_matrix(a->rows, a->cols);
+    for (int i = 0; i < a->rows; i++)
+        for (int j = 0; j < a->cols; j++)
+            r->data[i][j] = a->data[i][j] + b->data[i][j];
+    return r;
+}
+
+Matrix *subtract_matrices(Matrix *a, Matrix *b) {
+    if (a->rows != b->rows || a->cols != b->cols) return NULL;
+    Matrix *r = create_matrix(a->rows, a->cols);
+    for (int i = 0; i < a->rows; i++)
+        for (int j = 0; j < a->cols; j++)
+            r->data[i][j] = a->data[i][j] - b->data[i][j];
+    return r;
+}
