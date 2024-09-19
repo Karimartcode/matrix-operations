@@ -46,3 +46,13 @@ Matrix *subtract_matrices(Matrix *a, Matrix *b) {
             r->data[i][j] = a->data[i][j] - b->data[i][j];
     return r;
 }
+
+Matrix *multiply_matrices(Matrix *a, Matrix *b) {
+    if (a->cols != b->rows) return NULL;
+    Matrix *r = create_matrix(a->rows, b->cols);
+    for (int i = 0; i < a->rows; i++)
+        for (int j = 0; j < b->cols; j++)
+            for (int k = 0; k < a->cols; k++)
+                r->data[i][j] += a->data[i][k] * b->data[k][j];
+    return r;
+}
