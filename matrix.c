@@ -56,3 +56,19 @@ Matrix *multiply_matrices(Matrix *a, Matrix *b) {
                 r->data[i][j] += a->data[i][k] * b->data[k][j];
     return r;
 }
+
+Matrix *transpose(Matrix *m) {
+    Matrix *r = create_matrix(m->cols, m->rows);
+    for (int i = 0; i < m->rows; i++)
+        for (int j = 0; j < m->cols; j++)
+            r->data[j][i] = m->data[i][j];
+    return r;
+}
+
+Matrix *scalar_multiply(Matrix *m, double s) {
+    Matrix *r = create_matrix(m->rows, m->cols);
+    for (int i = 0; i < m->rows; i++)
+        for (int j = 0; j < m->cols; j++)
+            r->data[i][j] = m->data[i][j] * s;
+    return r;
+}
