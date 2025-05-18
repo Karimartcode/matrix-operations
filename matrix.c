@@ -72,3 +72,25 @@ Matrix *scalar_multiply(Matrix *m, double s) {
             r->data[i][j] = m->data[i][j] * s;
     return r;
 }
+
+double determinant(Matrix *m) {
+    if (m->rows != m->cols) return 0;
+    int n = m->rows;
+    if (n == 1) return m->data[0][0];
+    if (n == 2) return m->data[0][0] * m->data[1][1] - m->data[0][1] * m->data[1][0];
+    double det = 0;
+    for (int j = 0; j < n; j++) {
+        Matrix *sub = create_matrix(n - 1, n - 1);
+        for (int si = 1; si < n; si++) {
+            int sj = 0;
+            for (int k = 0; k < n; k++) {
+                if (k == j) continue;
+                sub->data[si - 1][sj++] = m->data[si][k];
+            }
+        }
+        double sign = (j % 2 == 0) ? 1 : -1;
+        det += sign * m->data[0][j] * determinant(sub);
+        free_matrix(sub);
+    }
+    return det;
+}
