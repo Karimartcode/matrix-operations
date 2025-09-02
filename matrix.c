@@ -94,3 +94,10 @@ double determinant(Matrix *m) {
     }
     return det;
 }
+
+Matrix *identity(int n) {
+    Matrix *m = create_matrix(n, n);
+    for (int i = 0; i < n; i++)
+        m->data[i][i] = 1.0;
+    return m;
+}
